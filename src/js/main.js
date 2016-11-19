@@ -3,9 +3,22 @@ var canvas, context, canvasWidth, canvasHeight;
 function init() {
     canvas = document.getElementById("canvas"); //gets the predefined canvas element
     context = canvas.getContext("2d"); //gets the canvas' context to draw on
-    canvasWidth = canvas.width = window.innerWidth; //save max. width available for canvas elements
-    canvasHeight = canvas.height = window.innerHeight; //save max. height available for canvas elements
-    draw()
+
+    canvas.width = window.innerWidth-100;
+    canvas.height = window.innerHeight-100;
+
+    canvasWidth = canvas.width;
+    canvasHeight = canvas.height;
+
+    barrier.y = canvasHeight - barrier.height;
+
+    draw();
+
+    canvas.addEventListener("mousedown", function(e) {
+            barrier.height = e.clientY;
+            barrier.draw(true);
+            console.log("test");
+    });
 }
 
 
@@ -14,8 +27,6 @@ function draw() {
     context.clearRect(0,0,canvasWidth,canvasHeight);
 
     //Draw rectangle
-    context.fillStyle = "rgb(222,222,222)";
-    context.fillRect(10, 10, 55, 50);
     context.fillStyle = "rgba(0, 0, 200, 0.5)";
     context.fillRect(30, 30, 55, 50);
 
@@ -39,6 +50,7 @@ function draw() {
     context.stroke();
 
     bird.draw();
+    barrier.draw(false);
 
     /* Animation steps
      1) Clear the canvas
@@ -59,18 +71,32 @@ var bird = {
     width: 100,
     height: 100,
     vx: 100,
-    vy: 1,
+    vy: 10,
     draw: function() {
-        console.log(this.x + this.y + "super"); //print message to console -> good for debugging :)
         this.img.src = 'http://freepngimages.com/wp-content/uploads/2014/06/stork_1.png';
         context.drawImage(this.img, this.x, this.y, this.width, this.height); //position image and scale
+    }
+}
+
+var barrier = {
+    width: 50,
+    height: 300,
+    x: 300,
+    y: 0,
+    draw: function (repeat) {
+        //draw barrier
+        context.fillStyle = "rgb(100,20,222)";
+        context.fillRect(this.x,this.y, this.width, this.height);
+        if (repeat == true){
+            this.draw()
+            console.log("nice");
+        }
     }
 }
 
 function moveBird() {
     bird.x += bird.vx;
     bird.y += bird.vy;
-    console.log("hallo");
     window.requestAnimationFrame(draw);
 }
 
