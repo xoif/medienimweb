@@ -12,13 +12,9 @@ function init() {
 
     barrier.y = canvasHeight - barrier.height;
 
+    canvas.addEventListener("mousedown",alterBarrierHeight,false);
     draw();
 
-    canvas.addEventListener("mousedown", function(e) {
-            barrier.height = e.clientY;
-            barrier.draw(true);
-            console.log("test");
-    });
 }
 
 
@@ -50,7 +46,7 @@ function draw() {
     context.stroke();
 
     bird.draw();
-    barrier.draw(false);
+    barrier.draw();
 
     /* Animation steps
      1) Clear the canvas
@@ -83,21 +79,45 @@ var barrier = {
     height: 300,
     x: 300,
     y: 0,
-    draw: function (repeat) {
+    draw: function() {
         //draw barrier
         context.fillStyle = "rgb(100,20,222)";
         context.fillRect(this.x,this.y, this.width, this.height);
-        if (repeat == true){
-            this.draw()
-            console.log("nice");
-        }
+        console.log("y: " + this.y + " height: " + this.height);
     }
+}
+
+function alterBarrierHeight(event) {
+    canvas.removeEventListener('mousedown', alterBarrierHeight, false)
+
+    var dragAnimation = function(evt) { // track mouse position
+        var mousePos = getMousePos(canvas, evt);
+        context.clearRect(barrier.x,barrier.y,barrier.width,barrier.height);
+        barrier.y = mousePos.y;
+        barrier.height = canvasHeight;
+        window.requestAnimationFrame(draw);
+    }
+    canvas.addEventListener('mousemove', dragAnimation, false);
+
+    canvas.addEventListener('mouseup', function(evt) { //animation should stop, if mouse click ended
+        canvas.removeEventListener('mousemove', dragAnimation)
+        console.log("stop");
+        canvas.addEventListener("mousedown",alterBarrierHeight,false);
+    }, false);
 }
 
 function moveBird() {
     bird.x += bird.vx;
     bird.y += bird.vy;
     window.requestAnimationFrame(draw);
+}
+
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+    };
 }
 
 window.onload = init
