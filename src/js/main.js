@@ -10,12 +10,17 @@ function init() {
     canvasWidth = canvas.width;
     canvasHeight = canvas.height;
 
-    barrier.y = canvasHeight - barrier.height; //set initial barrier position 
+    barrier.y = canvasHeight - barrier.height; //set initial barrier position
+    test.y = canvasHeight - barrier.height; //set initial barrier position
+    test.x = 10;
 
     //if the mouse button gets clicked, the method "handleMouseClickDown" should be loaded
     canvas.addEventListener("mousedown", handleMouseClickDown, false);
 
-    draw();
+    for (var i = 0; i< 11; i++){
+        draw();
+        console.log(i);
+    }
 
 }
 
@@ -23,8 +28,12 @@ var test = new Image();
 test.src = "/medienimweb/src/svg/car-svgrepo-com.svg";
 test.width = 75;
 test.height = 75;
+test.x = 0;
+test.y = 0;
 test.drawTest = function () {
-    context.drawImage(test, 0, 0, this.height, this.width);
+    this.x = 100;
+    context.drawImage(test, this.x, this.y, this.height, this.width);
+    console.log("x: " + this.x);
 }
 
 
@@ -52,7 +61,6 @@ var barrier = {
         //draw barrier
         context.fillStyle = "rgb(100,20,222)";
         context.fillRect(this.x, this.y, this.width, this.height);
-        console.log("y: " + this.y + " height: " + this.height);
     }
 }
 
