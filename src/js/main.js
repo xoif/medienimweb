@@ -11,8 +11,8 @@ function init() {
     canvasHeight = canvas.height;
 
     barrier.y = canvasHeight - barrier.height; //set initial barrier position
-    test.y = canvasHeight - barrier.height; //set initial barrier position
-    test.x = 10;
+    car.y = canvasHeight - barrier.height; //set initial barrier position
+    car.x = 10;
 
     //if the mouse button gets clicked, the method "handleMouseClickDown" should be loaded
     canvas.addEventListener("mousedown", handleMouseClickDown, false);
@@ -24,16 +24,23 @@ function init() {
 
 }
 
-var test = new Image();
-test.src = "/medienimweb/src/svg/car-svgrepo-com.svg";
-test.width = 75;
-test.height = 75;
-test.x = 0;
-test.y = 0;
-test.drawTest = function () {
-    this.x = 100;
-    context.drawImage(test, this.x, this.y, this.height, this.width);
-    console.log("x: " + this.x);
+var driveCar = function () {
+    car.x = car.x + 10;
+};
+
+var testX = 0;
+
+var car = new Image();
+car.src = "/medienimweb/src/svg/car-svgrepo-com.svg";
+car.width = 75;
+car.height = 75;
+car.x = 0;
+car.y = 0;
+car.drawTest = function () {
+    testX = testX + 10;
+    driveCar();
+    context.drawImage(car, testX, this.y, this.height, this.width);
+    console.log("x: " + this.x + "  textX " + testX);
 }
 
 
@@ -82,7 +89,7 @@ function draw() {
     // 3) draw objects that should be animated. 
     bird.draw();
     barrier.draw();
-    test.drawTest();
+    car.drawTest();
     //drawDemoObjects();
 }
 
