@@ -19,6 +19,27 @@ function init() {
 
 }
 
+var data = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">' +
+    '<foreignObject width="100%" height="100%">' +
+    '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
+    '<em>I</em> like ' +
+    '<span style="color:white; text-shadow:0 0 2px blue;">' +
+    'cheese</span>' +
+    '</div>' +
+    '</foreignObject>' +
+    '</svg>';
+
+var DOMURL = window.URL || window.webkitURL || window;
+var test = new Image();
+var svg = new Blob([data], {type: 'image/svg+xml'});
+var url = DOMURL.createObjectURL(svg);
+test.src = url;
+test.drawTest = function () {
+    context.drawImage(test, 0, 0);
+    DOMURL.revokeObjectURL(url);
+}
+
+
 var bird = {
     img: new Image(), //create new image element
     x: 10,
@@ -64,6 +85,7 @@ function draw() {
     // 3) draw objects that should be animated. 
     bird.draw();
     barrier.draw();
+    test.drawTest();
     //drawDemoObjects();
 }
 
