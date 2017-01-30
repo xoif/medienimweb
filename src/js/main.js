@@ -17,33 +17,30 @@ function init() {
     //if the mouse button gets clicked, the method "handleMouseClickDown" should be loaded
     canvas.addEventListener("mousedown", handleMouseClickDown, false);
 
-    for (var i = 0; i< 11; i++){
+    for (var i = 0; i < 11; i++) {
         draw();
         console.log(i);
     }
-
 }
 
-var driveCar = function () {
+var driveCar = function() {
     car.x = car.x + 10;
 };
 
 var testX = 0;
 
 var car = new Image();
-car.src = "/medienimweb/src/svg/car-svgrepo-com.svg";
+car.src = "svg/car-svgrepo-com.svg";
 car.width = 75;
 car.height = 75;
 car.x = 0;
 car.y = 0;
-car.drawTest = function () {
+car.drawTest = function() {
     testX = testX + 10;
     driveCar();
     context.drawImage(car, testX, this.y, this.height, this.width);
     console.log("x: " + this.x + "  textX " + testX);
 }
-
-
 
 var bird = {
     img: new Image(), //create new image element
@@ -51,10 +48,10 @@ var bird = {
     y: 200,
     width: 100,
     height: 100,
-    vx: 100,  //bird should move 100pixels to the right in every animation cycle
-    vy: 10,     //bird should move down 10 pixels in every animation cycle
+    vx: 100, //bird should move 100pixels to the right in every animation cycle
+    vy: 10, //bird should move down 10 pixels in every animation cycle
     draw: function() { //draws the bird
-        this.img.src = 'http://freepngimages.com/wp-content/uploads/2014/06/stork_1.png';
+        this.img.src = 'svg/papierflieger.svg';
         context.drawImage(this.img, this.x, this.y, this.width, this.height); //position image and scale
     }
 }
@@ -136,9 +133,7 @@ function moveBird() {
     window.requestAnimationFrame(draw);
 }
 
-
 //Helper Methods
-
 function getMousePos(canvas, evt) { //returns the current mouse position in canvas
     var rect = canvas.getBoundingClientRect();
     return {
@@ -147,7 +142,7 @@ function getMousePos(canvas, evt) { //returns the current mouse position in canv
     };
 }
 
-function drawDemoObjects() {  //draws demo objects
+function drawDemoObjects() { //draws demo objects
     //Draw rectangle
     context.fillStyle = "rgba(0, 0, 200, 0.5)";
     context.fillRect(30, 30, 55, 50);
@@ -171,6 +166,5 @@ function drawDemoObjects() {  //draws demo objects
     context.quadraticCurveTo(125, 25, 75, 25);
     context.stroke();
 }
-
 
 window.onload = init
