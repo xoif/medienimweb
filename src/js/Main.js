@@ -19,7 +19,7 @@ function init() {
 }
 
 function go() {
-    animationCycle = 0;
+    animationCycle = 1;
     myTimer = setInterval(loop, 1000 / framesPerSeconds);
 }
 
