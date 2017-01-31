@@ -35,8 +35,6 @@ function getMousePos(canvas, evt) { //returns the current mouse position in canv
     };
 }
 
-
-var TO_RADIANS = Math.PI / 180;
 function drawRotatedImage(image, x, y, angle) {
 
     // save the current co-ordinate system
@@ -46,9 +44,8 @@ function drawRotatedImage(image, x, y, angle) {
     // move to the middle of where we want to draw our image
     context.translate(x, y);
 
-    // rotate around that point, converting our
-    // angle from degrees to radians
-    context.rotate(angle * TO_RADIANS);
+    // rotate around that point
+    context.rotate(angle);
 
     // draw it up and to the left by half the width
     // and height of the image

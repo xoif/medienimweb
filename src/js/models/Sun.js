@@ -4,7 +4,7 @@
 
 var sun = {
     img: new Image(), //create new image element
-    x: 300,
+    x: 450,
     y: 150,
     draw: function() { //draws the cloud
         this.img.src = 'svg/sonne.svg';
@@ -13,5 +13,5 @@ var sun = {
 };
 
 function moveSun() {
-    sun.y = sun.y - 0.1;
+    sun.y = sun.y - 0.01;
 }

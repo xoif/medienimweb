@@ -32,7 +32,7 @@ function movePaperPlane() {
     paperPlane.x = animationCycle;
     paperPlane.y = 0.3 * animationCycle;
 
-    if (paperPlane.x > canvasWidth / 3 && currentAnimationStep < stepsForLooping) {
+    if (paperPlane.x > canvasWidth / 2 && currentAnimationStep < stepsForLooping) {
         loopPaperPlane();
         console.log("loop");
     }
@@ -48,10 +48,11 @@ function loopPaperPlane(){
 
 
 function calculatePaperPlaneRotation() {
-    var deltaY = (paperPlane.lastY - paperPlane.y) / (paperPlane.lastX - paperPlane.x);
-    var angle = Math.atan(deltaY);
+    var deltaY = paperPlane.y - paperPlane.lastY;
+    var deltaX = paperPlane.x - paperPlane.lastX;
+    var angle = Math.atan(deltaY/deltaX);
     console.log("rotation angel" + angle + "°");
-    return -angle;
+    return angle;
 }
 
 

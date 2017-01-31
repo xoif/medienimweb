@@ -39,11 +39,12 @@ function draw() {
     context.clearRect(0, 0, canvasWidth, canvasHeight); //1) clear the canvas before animating
 
     // 3) draw objects that should be animated. 
-    paperPlane.draw();
-    barrier.draw();
+
     sun.draw();
     cloud1.draw();
     cloud2.draw();
+    paperPlane.draw();
+    barrier.draw();
 }
 
 
@@ -52,8 +53,7 @@ function loop() {
     //console.log("animation Cycle: " + animationCycle);
     draw();
     movePaperPlane();
-    moveCloud1();
-    moveCloud2();
+    moveClouds();
     moveSun();
 
     // stop the the animation if it runs out-of-canvas

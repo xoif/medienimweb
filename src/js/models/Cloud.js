@@ -2,6 +2,11 @@
  * Created by ML on 31.01.2017.
  */
 
+function moveClouds() {
+    moveCloud1();
+    moveCloud2();
+}
+
 var cloud1 = {
     img: new Image(), //create new image element
     x: 30,
@@ -17,7 +22,7 @@ var cloud1 = {
  */
 
 function moveCloud1() {
-    cloud1.x = cloud1.x + 1;
+    cloud1.x = cloud1.x + 0.1;
 }
 
 
@@ -36,5 +41,5 @@ var cloud2 = {
  */
 
 function moveCloud2() {
-    cloud2.x = cloud2.x + 0.4;
+    cloud2.x = cloud2.x + 0.04;
 }
