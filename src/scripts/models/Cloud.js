@@ -12,7 +12,7 @@ var cloud1 = {
     x: 30,
     y: 170,
     draw: function() { //draws the cloud
-        this.img.src = 'svg/wolke.svg';
+        this.img.src = 'images/wolke.svg';
         context.drawImage(this.img, this.x, this.y);
     }
 };
@@ -31,7 +31,7 @@ var cloud2 = {
     x: 20,
     y: 35,
     draw: function() { //draws the cloud
-        this.img.src = 'svg/wolke2.svg';
+        this.img.src = 'images/wolke2.svg';
         context.drawImage(this.img, this.x, this.y);
     }
 };

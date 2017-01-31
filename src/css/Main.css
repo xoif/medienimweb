@@ -17,7 +17,7 @@ svg {
 }
 
 #canvas {
-    background-image: url("../svg/Berge.svg");
+    background-image: url("../images/Berge.svg");
     background-size: 100%;
     width: 90%;
 }

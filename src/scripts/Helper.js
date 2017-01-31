@@ -54,3 +54,14 @@ function drawRotatedImage(image, x, y, angle) {
     // and restore the co-ords to how they were when we began
     context.restore();
 }
+
+function checkCollision() {
+    return isBarrierHit();
+}
+
+function drawHitboxes() {
+    context.fillStyle = "rgb(255, 255, 0)";
+    context.fillRect(paperPlane.getHitbox().left, paperPlane.getHitbox().top, paperPlane.img.width, paperPlane.img.height);  //x,y,w,h
+    context.fillRect(barrier.x, barrier.y, barrier.width, barrier.height);  //x,y,w,h
+}
+

@@ -1,6 +1,7 @@
 var canvas, context, canvasWidth, canvasHeight, myTimer, animationCycle, framesPerSeconds;
 
 function init() {
+
     framesPerSecond = 20;
 
     canvas = document.getElementById("canvas"); //gets the predefined canvas element
@@ -16,6 +17,7 @@ function init() {
     //if the mouse button gets clicked, the method "handleMouseClickDown" should be loaded
     canvas.addEventListener("mousedown", handleMouseClickDown, false);
 
+    draw();
 }
 
 function go() {
@@ -45,12 +47,13 @@ function draw() {
     cloud2.draw();
     paperPlane.draw();
     barrier.draw();
+   // drawHitboxes();
 }
 
 
 //loop function
 function loop() {
-    //console.log("animation Cycle: " + animationCycle);
+
     draw();
     movePaperPlane();
     moveClouds();
@@ -61,9 +64,13 @@ function loop() {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         clearInterval(myTimer);
         alert("You win!");
+    } else if (checkCollision()) {
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        clearInterval(myTimer);
+        alert("You loose!");
     }
 
-    animationCycle = animationCycle + 1;
+    animationCycle++;
 }
 
 window.onload = init;

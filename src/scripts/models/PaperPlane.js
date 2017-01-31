@@ -4,20 +4,27 @@
 
 var paperPlane = {
     img: new Image(), //create new image element
-    x: 0,
+    x: -100,
     y: 20,
-    lastY: 0,
-    lastX: 0,
+    lastY: 20,
+    lastX: -100,
     draw: function () { //draws the paperPlane
-        this.img.src = 'svg/papierflieger.svg';
+        this.img.src = 'images/papierflieger.svg';
         drawRotatedImage(this.img,this.x,this.y,calculatePaperPlaneRotation());
-        //context.drawImage(this.img, this.x, this.y);
+    },
+    getHitbox: function () {
+        return {
+            "top":  this.y - 0.5 * this.img.height,
+            "bottom":   this.y + 0.5 * this.img.height,
+            "left":     this.x - 0.5 * this.img.width,
+            "right":    this.x + 0.5 * this.img.width
+        }
     }
 };
 
 
-var currentAnimationStep = 0;
-var stepsForLooping = 80;
+var currentLoopingFrame = 0;
+var loopingComplete = 100;
 
 /**
  * method to alter the plane position in each animation step
@@ -32,7 +39,8 @@ function movePaperPlane() {
     paperPlane.x = animationCycle;
     paperPlane.y = 0.3 * animationCycle;
 
-    if (paperPlane.x > canvasWidth / 2 && currentAnimationStep < stepsForLooping) {
+
+    if (paperPlane.x > 2 * (canvasWidth / 3) && currentLoopingFrame < loopingComplete) {
         loopPaperPlane();
         console.log("loop");
     }
@@ -41,9 +49,11 @@ function movePaperPlane() {
 
 
 function loopPaperPlane(){
-    currentAnimationStep ++;
-    paperPlane.x = 100 * Math.cos(animationCycle%canvasWidth * 0.1) + animationCycle%canvasWidth * 0.8;
-    paperPlane.y = 100 * Math.sin(animationCycle%canvasWidth * 0.1) + animationCycle%canvasWidth * 0.01;
+
+    currentLoopingFrame++;
+
+    paperPlane.x = 90 * Math.sin(0.05* currentLoopingFrame) + paperPlane.x;
+    paperPlane.y = 90 * Math.cos(0.05* currentLoopingFrame) + paperPlane.y;
 }
 
 
@@ -51,9 +61,9 @@ function calculatePaperPlaneRotation() {
     var deltaY = paperPlane.y - paperPlane.lastY;
     var deltaX = paperPlane.x - paperPlane.lastX;
     var angle = Math.atan(deltaY/deltaX);
-    console.log("rotation angel" + angle + "°");
     return angle;
 }
+
 
 
 

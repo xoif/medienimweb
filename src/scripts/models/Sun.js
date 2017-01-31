@@ -7,11 +7,11 @@ var sun = {
     x: 450,
     y: 150,
     draw: function() { //draws the cloud
-        this.img.src = 'svg/sonne.svg';
+        this.img.src = 'images/sonne.svg';
         context.drawImage(this.img, this.x, this.y);
     }
 };
 
 function moveSun() {
-    sun.y = sun.y - 0.01;
+    sun.y = sun.y - 0.1;
 }
