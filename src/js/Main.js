@@ -1,9 +1,8 @@
-var canvas, context, canvasWidth, canvasHeight, myTimer;
-var dynamic = 10;
-var testX = 0;
-
+var canvas, context, canvasWidth, canvasHeight, myTimer, animationCycle, framesPerSeconds;
 
 function init() {
+    framesPerSecond = 20;
+
     canvas = document.getElementById("canvas"); //gets the predefined canvas element
     context = canvas.getContext("2d"); //gets the canvas' context to draw on
 
@@ -19,35 +18,10 @@ function init() {
     canvas.addEventListener("mousedown", handleMouseClickDown, false);
 }
 
-/*
- //loop function
- function loop() {
-
- // change dynamic
- dynamic = dynamic * 1.1;
- x = dynamic;
- y = dynamic * 1.2;
-
- // stop the the animation if it runs out-of-canvas
- if (x > canvas.width || y > canvas.height) {
- c.clearRect(0, 0, canvas.width, canvas.height);
- clearInterval(myTimer);
- alert("animation done!");
- }
-
- // clear the canvas for this loop's animation
- c.clearRect(0, 0, canvas.width, canvas.height);
- c.fillStyle = '#87CEEB';
-
- // draw
- c.beginPath();
- c.arc(x, y, 10, 0, Math.PI * 2, false);
- c.fill();
- }
-
- $("#go").click(function(){ dynamic=10; myTimer=setInterval(loop,20); });
- */
-
+function go() {
+    animationCycle = 0;
+    myTimer = setInterval(loop, 1000 / framesPerSeconds);
+}
 
 function draw() {
 
@@ -69,5 +43,21 @@ function draw() {
     barrier.draw();
 }
 
+
+//loop function
+function loop() {
+    console.log("animation Cycle: " + animationCycle);
+
+    movePaperPlane();
+    draw();
+    // stop the the animation if it runs out-of-canvas
+    if (paperPlane.x > canvasWidth) {
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        clearInterval(myTimer);
+        alert("You win!");
+    }
+
+    animationCycle = animationCycle + 1;
+}
 
 window.onload = init;
