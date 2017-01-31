@@ -13,9 +13,9 @@ function init() {
     canvasHeight = canvas.height;
 
     barrier.y = canvasHeight - barrier.height; //set initial barrier position
-
     //if the mouse button gets clicked, the method "handleMouseClickDown" should be loaded
     canvas.addEventListener("mousedown", handleMouseClickDown, false);
+
 }
 
 function go() {
@@ -41,15 +41,21 @@ function draw() {
     // 3) draw objects that should be animated. 
     paperPlane.draw();
     barrier.draw();
+    sun.draw();
+    cloud1.draw();
+    cloud2.draw();
 }
 
 
 //loop function
 function loop() {
-    console.log("animation Cycle: " + animationCycle);
-
-    movePaperPlane();
+    //console.log("animation Cycle: " + animationCycle);
     draw();
+    movePaperPlane();
+    moveCloud1();
+    moveCloud2();
+    moveSun();
+
     // stop the the animation if it runs out-of-canvas
     if (paperPlane.x > canvasWidth) {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
