@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Examinator</title>
+    <title>Paperplane</title>
     <link rel="stylesheet" href="css/Main.css">
 
     <script type="text/javascript" src="scripts/models/PaperPlane.js"></script>
     <script type="text/javascript" src="scripts/models/Barrier.js"></script>
+    <script type="text/javascript" src="scripts/models/Balloon.js"></script>
     <script type="text/javascript" src="scripts/models/Cloud.js"></script>
     <script type="text/javascript" src="scripts/models/Sun.js"></script>
     <script type="text/javascript" src="scripts/Helper.js"></script>
@@ -16,11 +17,16 @@
 </head>
 
 <body>
-    <canvas id='canvas'></canvas>
-    <br/>
+<div id="container">
+    <button type="button" onclick="next()" id="buttonNext">next</button>
+    <canvas id="canvas"></canvas>
+</div>
+
+<div id="controlls">
     <button type="button" onclick="go()" id="buttonMove">Move</button>
     <button type="button" onclick="stop()" id="buttonStop">Stop</button>
     <button type="button" onclick="toggleHitboxes()" id="buttonToggleHitboxes">Show Hitboxes</button>
+</div>
 
 </body>
 

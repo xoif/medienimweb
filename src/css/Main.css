@@ -12,12 +12,27 @@ html {
 canvas,
 img,
 svg {
-    vertical-align: middle;
     border: 0 none;
+}
+
+#container {
+    vertical-align: middle;
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #canvas {
     background-image: url("../images/Berge.svg");
     background-size: 100%;
     width: 90%;
+}
+
+.buttonNext {
+    top: 400px;
+    left: 300px;
+}
+
+.controlls {
+    margin: 10px;
 }

@@ -14,10 +14,13 @@ function init() {
     canvasHeight = canvas.height;
 
     barrier.y = canvasHeight - barrier.height; //set initial barrier position
+    balloon.y = canvasHeight - balloon.img.height;
+
     //if the mouse button gets clicked, the method "handleMouseClickDown" should be loaded
     canvas.addEventListener("mousedown", handleMouseClickDown, false);
 
     draw();
+    drawFirstScreen();
 }
 
 function go() {
@@ -79,3 +82,6 @@ function loop() {
 }
 
 window.onload = init;
+window.ready(updateHeight);
+window.resize(updateHeight);
+

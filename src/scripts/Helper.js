@@ -29,6 +29,7 @@ function drawDemoObjects() { //draws demo objects
     context.stroke();
 }
 
+
 function getMousePos(canvas, evt) { //returns the current mouse position in canvas
     var rect = canvas.getBoundingClientRect();
     return {
@@ -75,3 +76,22 @@ function stop(){
     clearInterval(myTimer);
 }
 
+function drawFirstScreen() {
+    context.fillStyle = "rgba(255, 100, 100, 0.8)";
+    context.fillRect(0, 0, canvasWidth, canvasHeight);
+    context.fillStyle = "rgb(0,0,0)";
+    context.font = "100px Georgia";
+    context.textAlign = "center";
+    context.fillText("Welcome to", canvasWidth / 2, canvasHeight / 2);
+    context.fillText("Paperplane!", canvasWidth / 2, canvasHeight / 2 + 110);
+
+}
+
+/*
+ fit height dynamicly to screen width
+ */
+function updateHeight() {
+    var div = document.getElementsByClassName("container");
+    var width = div.width();
+    div.css('height', 0.5626 * width);
+}
