@@ -64,12 +64,12 @@ function loop() {
 
     // stop the the animation if it runs out-of-canvas
     if (paperPlane.x > canvasWidth) {
-        stop();;;;;;
+        stop();
         alert("You win!");
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         window.location.reload(true);
     } else if (checkCollision()) {
-        stop();;;;;;
+        stop();
         alert("You loose!");
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         window.location.reload(true);
