@@ -47,7 +47,10 @@ function draw() {
     cloud2.draw();
     paperPlane.draw();
     barrier.draw();
-   // drawHitboxes();
+
+    if (shouldShowHitboxes) {
+        drawHitboxes();
+    }
 }
 
 
@@ -61,13 +64,15 @@ function loop() {
 
     // stop the the animation if it runs out-of-canvas
     if (paperPlane.x > canvasWidth) {
-        context.clearRect(0, 0, canvasWidth, canvasHeight);
-        clearInterval(myTimer);
+        stop();;;;;;
         alert("You win!");
-    } else if (checkCollision()) {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
-        clearInterval(myTimer);
+        window.location.reload(true);
+    } else if (checkCollision()) {
+        stop();;;;;;
         alert("You loose!");
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        window.location.reload(true);
     }
 
     animationCycle++;

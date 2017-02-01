@@ -2,6 +2,8 @@
  * Created by Rolf on 30.01.2017.
  */
 
+var shouldShowHitboxes = false;
+
 function drawDemoObjects() { //draws demo objects
     //Draw rectangle
     context.fillStyle = "rgba(0, 0, 200, 0.5)";
@@ -63,5 +65,13 @@ function drawHitboxes() {
     context.fillStyle = "rgb(255, 255, 0)";
     context.fillRect(paperPlane.getHitbox().left, paperPlane.getHitbox().top, paperPlane.img.width, paperPlane.img.height);  //x,y,w,h
     context.fillRect(barrier.x, barrier.y, barrier.width, barrier.height);  //x,y,w,h
+}
+
+function toggleHitboxes(){
+    shouldShowHitboxes = !shouldShowHitboxes;
+}
+
+function stop(){
+    clearInterval(myTimer);
 }
 
