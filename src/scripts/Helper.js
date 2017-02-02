@@ -3,6 +3,7 @@
  */
 
 var shouldShowHitboxes = false;
+var tutorialState = 1;
 
 function drawDemoObjects() { //draws demo objects
     //Draw rectangle
@@ -76,15 +77,72 @@ function stop(){
     clearInterval(myTimer);
 }
 
-function drawFirstScreen() {
+function drawTutorialScreen() {
     context.fillStyle = "rgba(255, 100, 100, 0.8)";
     context.fillRect(0, 0, canvasWidth, canvasHeight);
     context.fillStyle = "rgb(0,0,0)";
     context.font = "100px Georgia";
     context.textAlign = "center";
-    context.fillText("Welcome to", canvasWidth / 2, canvasHeight / 2);
-    context.fillText("Paperplane!", canvasWidth / 2, canvasHeight / 2 + 110);
 
+    switch (tutorialState) {
+        case 1: {
+            context.fillText("Welcome to", canvasWidth / 2, canvasHeight / 2);
+            context.fillText("Paperplane!", canvasWidth / 2, canvasHeight / 2 + 110);
+            break;
+        }
+        case 2: {
+            context.fillText("Drag the blue barrier", canvasWidth / 2, canvasHeight / 2);
+            context.fillText("to adjust height!", canvasWidth / 2, canvasHeight / 2 + 110);
+            break;
+        }
+        case 4: {
+            context.fillText("Great! Now moove the", canvasWidth / 2, canvasHeight / 2);
+            context.fillText("blue balloon!", canvasWidth / 2, canvasHeight / 2 + 110);
+            break;
+        }
+        case 6: {
+            context.fillText("Great! You got it", canvasWidth / 2, canvasHeight / 2);
+            context.fillText("Click start to see the plane flying!", canvasWidth / 2, canvasHeight / 2 + 110);
+            break;
+        }
+    }
+
+}
+
+function next() {
+    draw();
+    tutorialState++;
+    switch (tutorialState) {
+        case 2: {
+            drawTutorialScreen();
+            break;
+        }
+        case 3: {
+            //if the mouse button gets clicked, the method "handleMouseClickDownForBarrier" should be loaded
+            canvas.addEventListener("mousedown", handleMouseClickDownForBarrier, false);
+            break;
+        }
+        case 4: {
+            drawTutorialScreen();
+            canvas.removeEventListener("mousedown", handleMouseClickDownForBarrier, false);
+            break;
+        }
+        case 5: {
+            //if the mouse button gets clicked, the method "handleMouseClickDownForBarrier" should be loaded
+            canvas.addEventListener("mousedown", handleMouseClickDownForBalloon, false);
+            break;
+        }
+        case 6: {
+            drawTutorialScreen();
+            canvas.removeEventListener("mousedown", handleMouseClickDownForBarrier, false);
+            break;
+        }
+        case 7: {
+            movePaperPlane();
+            document.getElementById("buttonNext").attr('disabled', true);
+            break;
+        }
+    }
 }
 
 /*

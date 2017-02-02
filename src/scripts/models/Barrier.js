@@ -23,7 +23,7 @@ var barrier = {
 };
 
 
-function handleMouseClickDown(event) {
+function handleMouseClickDownForBarrier(event) {
     var mousePos = getMousePos(canvas, event);
 
     //check if the barrier is clicked (mouse pointer position x & y must be in the area that is occupied by the barrier.
