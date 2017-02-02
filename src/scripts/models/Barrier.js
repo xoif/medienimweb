@@ -5,15 +5,19 @@
 var barrier = {
     width: 50,
     height: 300,
-    x: 300,
+    x: 0,
     y: 0,
+    setup: function(){
+        barrier.x = canvasWidth/3;
+        barrier.y = canvasHeight - barrier.height; //set initial barrier position
+    },
     draw: function () {
         //draw barrier
         context.fillStyle = "rgb(100,20,222)";
         context.fillRect(this.x, this.y, this.width, this.height);
     },
     getHitbox: function () {
-        return {
+        return { //x and y are positioned in the middle, because of drawRotatedImage()
             "top":      this.y,
             "bottom":   this.y + this.height,
             "left":     this.x,
@@ -22,12 +26,14 @@ var barrier = {
     }
 };
 
-
 function handleMouseClickDownForBarrier(event) {
     var mousePos = getMousePos(canvas, event);
 
+    console.log("barrier positionX: " + barrier.x + " barrier positionY: " + barrier.y + " mouseX: " + mousePos.x + " mouseY: " + mousePos.y);
+
     //check if the barrier is clicked (mouse pointer position x & y must be in the area that is occupied by the barrier.
     if (mousePos.y > barrier.getHitbox()["top"] && mousePos.y < barrier.getHitbox()["bottom"] && mousePos.x > barrier.getHitbox()["left"] && mousePos.x < barrier.getHitbox()["right"]) {
+        console.log("go");
         alterBarrierHeight(event)
     }
 }

@@ -2,14 +2,13 @@ var canvas, context, canvasWidth, canvasHeight, myTimer, animationCycle, framesP
 
 function init() {
 
+    window.addEventListener('resize', updateCanvasSize, true);
     framesPerSecond = 20;
 
     canvas = document.getElementById("canvas"); //gets the predefined canvas element
     context = canvas.getContext("2d"); //gets the canvas' context to draw on
 
     updateCanvasSize();
-
-    barrier.y = canvasHeight - barrier.height; //set initial barrier position
 
     draw();
     drawTutorialScreen();
@@ -40,14 +39,18 @@ function draw() {
     sun.draw();
     cloud1.draw();
     cloud2.draw();
-    paperPlane.draw();
+
+
+
     if (tutorialState >= 3) {
         barrier.draw();
     }
     if (tutorialState >= 5) {
         balloon.draw();
     }
-    console.log("balloon x: " + balloon.x + "  balloon y: "+ balloon.y + "canvas height = " +  canvasHeight + "canvas width = " + canvasWidth);
+    if (tutorialState >= 7) {
+        paperPlane.draw();
+    }
 
     if (shouldShowHitboxes) {
         drawHitboxes();
@@ -80,5 +83,5 @@ function loop() {
 }
 
 window.onload = init;
-window.addEventListener('resize', updateCanvasSize, true);
+
 

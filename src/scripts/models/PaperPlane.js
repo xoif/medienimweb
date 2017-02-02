@@ -8,12 +8,14 @@ var paperPlane = {
     y: 20,
     lastY: 20,
     lastX: -100,
+    setup: function(){
+        this.img.src = 'images/papierflieger.png';
+    },
     draw: function () { //draws the paperPlane
-        this.img.src = 'images/papierflieger.svg';
         drawRotatedImage(this.img,this.x,this.y,calculatePaperPlaneRotation());
     },
     getHitbox: function () {
-        return {
+        return { //x and y are positioned in the middle, because of drawRotatedImage()
             "top":  this.y - 0.5 * this.img.height,
             "bottom":   this.y + 0.5 * this.img.height,
             "left":     this.x - 0.5 * this.img.width,
