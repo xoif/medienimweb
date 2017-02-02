@@ -29,6 +29,8 @@ canvas {
 
 #canvas {
     background-image: url("../images/Berge.svg");
+    background-repeat:no-repeat;
+    background-position:50% 100%;
     background-size: 100%;
     width: 90%;
 }
