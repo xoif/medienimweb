@@ -92,7 +92,7 @@ function drawTutorialScreen() {
     switch (tutorialState) {
         case 1: {
             context.fillText("Welcome to", canvasWidth / 2, canvasHeight / 2);
-            context.fillText("Paperplane!", canvasWidth / 2, canvasHeight / 2 + 110);
+            context.fillText("Paper Plane!", canvasWidth / 2, canvasHeight / 2 + 110);
             break;
         }
         case 2: {
