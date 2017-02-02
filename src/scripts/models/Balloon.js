@@ -9,7 +9,7 @@ var balloon = {
     setup: function(){
         this.img.src = 'images/Ballon_rot.png';
         balloon.x = canvasWidth/2;
-        balloon.y = canvasHeight - this.img.height;
+        balloon.y = canvasHeight - 100;
     },
     draw: function() {
         //draw balloon

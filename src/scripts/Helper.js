@@ -72,6 +72,7 @@ function drawHitboxes() {
 
 function toggleHitboxes(){
     shouldShowHitboxes = !shouldShowHitboxes;
+    draw();
 }
 
 function stop(){
