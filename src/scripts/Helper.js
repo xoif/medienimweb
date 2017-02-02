@@ -82,7 +82,7 @@ function drawTutorialScreen() {
     context.fillStyle = "rgba(255, 100, 100, 0.8)";
     context.fillRect(0, 0, canvasWidth, canvasHeight);
     context.fillStyle = "rgb(0,0,0)";
-    context.font = "20px Georgia";
+    context.font = "100px Georgia";
     context.textAlign = "center";
 
     switch (tutorialState) {

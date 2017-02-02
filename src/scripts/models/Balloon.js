@@ -8,7 +8,7 @@ var balloon = {
     y: 0,
     draw: function () {
         //draw balloon
-        this.img.src = 'images/balloon.png';
+        this.img.src = 'images/Ballon_rot.svg';
         context.drawImage(this.img, this.x, this.y);
     },
     getHitbox: function () {
