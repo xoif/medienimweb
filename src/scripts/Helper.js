@@ -66,6 +66,7 @@ function checkCollision() {
 function drawHitboxes() {
     context.fillStyle = "rgb(255, 255, 0)";
     context.fillRect(paperPlane.getHitbox().left, paperPlane.getHitbox().top, paperPlane.img.width, paperPlane.img.height);  //x,y,w,h
+    context.fillRect(balloon.getHitbox().left, balloon.getHitbox().top, balloon.img.width, balloon.img.height);  //x,y,w,h
     context.fillRect(barrier.x, barrier.y, barrier.width, barrier.height);  //x,y,w,h
 }
 
@@ -81,7 +82,7 @@ function drawTutorialScreen() {
     context.fillStyle = "rgba(255, 100, 100, 0.8)";
     context.fillRect(0, 0, canvasWidth, canvasHeight);
     context.fillStyle = "rgb(0,0,0)";
-    context.font = "80px Georgia";
+    context.font = "20px Georgia";
     context.textAlign = "center";
 
     switch (tutorialState) {
@@ -96,8 +97,11 @@ function drawTutorialScreen() {
             break;
         }
         case 4: {
-            context.fillText("Great! Now moove the", canvasWidth / 2, canvasHeight / 2);
+            context.fillText("Great! Now move the", canvasWidth / 2, canvasHeight / 2);
             context.fillText("red balloon!", canvasWidth / 2, canvasHeight / 2 + 110);
+            balloon.x = canvasWidth/2;
+            balloon.y = canvasHeight - balloon.img.height;
+            balloon.draw();
             break;
         }
         case 6: {
@@ -160,6 +164,14 @@ function next() {
  fit height dynamicly to screen width
  */
 function updateHeight() {
-    var div = document.getElementById("container").style.height = 0.5626 * canvasWidth;
-    var nextButton = document.getElementById("buttonNext").style.bottom = "20px";
+    document.getElementById("buttonNext").style.bottom = "20px";
+
+    canvas.width = window.innerWidth - 20;
+    canvas.height = (window.innerWidth - 20) * 0.5626;
+
+    canvasWidth = canvas.width;
+    canvasHeight = canvas.height;
+
+    draw();
+    drawTutorialScreen();
 }

@@ -4,11 +4,11 @@
 
 var balloon = {
     img: new Image(), //create new image element
-    x: 300,
-    y: 50,
+    x: 0,
+    y: 0,
     draw: function () {
         //draw balloon
-        this.img.src = 'images/Ballon_rot.svg';
+        this.img.src = 'images/balloon.png';
         context.drawImage(this.img, this.x, this.y);
     },
     getHitbox: function () {
@@ -43,7 +43,6 @@ function alterBalloonHeight(event) {
     var stopAnimation = function (evt) { //animation should stop, if mouse click ended
         canvas.removeEventListener('mousemove', startAnimation);
         canvas.removeEventListener('mouseup', stopAnimation);
-        console.log("stop");
     };
 
     canvas.addEventListener('mousemove', startAnimation, false); //on every mousepointer move,

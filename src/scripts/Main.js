@@ -7,14 +7,9 @@ function init() {
     canvas = document.getElementById("canvas"); //gets the predefined canvas element
     context = canvas.getContext("2d"); //gets the canvas' context to draw on
 
-    canvas.width = window.innerWidth - 100;
-    canvas.height = window.innerHeight - 100;
-
-    canvasWidth = canvas.width;
-    canvasHeight = canvas.height;
+    updateHeight();
 
     barrier.y = canvasHeight - barrier.height; //set initial barrier position
-    balloon.y = canvasHeight - balloon.img.height;
 
     draw();
     drawTutorialScreen();
@@ -52,6 +47,7 @@ function draw() {
     if (tutorialState >= 5) {
         balloon.draw();
     }
+    console.log("balloon x: " + balloon.x + "  balloon y: "+ balloon.y + "canvas height = " +  canvasHeight + "canvas width = " + canvasWidth);
 
     if (shouldShowHitboxes) {
         drawHitboxes();
