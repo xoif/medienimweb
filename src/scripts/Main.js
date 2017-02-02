@@ -63,6 +63,7 @@ function loop() {
 
     draw();
     movePaperPlane();
+    moveBalloon();
     moveClouds();
     moveSun();
 

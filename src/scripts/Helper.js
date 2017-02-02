@@ -60,7 +60,7 @@ function drawRotatedImage(image, x, y, angle) {
 }
 
 function checkCollision() {
-    return isBarrierHit();
+    return isBalloonHit() || isBarrierHit();
 }
 
 function drawHitboxes() {

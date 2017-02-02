@@ -25,6 +25,14 @@ var balloon = {
     }
 };
 
+/**
+ * method to alter the plane position in each animation step
+ */
+function moveBalloon() {
+    balloon.y -= 0.5;
+}
+
+
 
 function handleMouseClickDownForBalloon(event) {
     var mousePos = getMousePos(canvas, event);
