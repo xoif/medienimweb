@@ -44,11 +44,16 @@ function movePaperPlane() {
 
     if (paperPlane.x > 2 * (canvasWidth / 3) && currentLoopingFrame < loopingComplete) {
         loopPaperPlane();
+     //  demo();
         console.log("loop");
     }
+
     console.log("paperPlane x = " + paperPlane.x + " paperPlane y = " + paperPlane.y);
 }
 
+function demo(){
+    paperPlane.y = paperPlane.y + 0.3 * animationCycle;
+}
 
 function loopPaperPlane(){
 
