@@ -7,7 +7,7 @@ function init() {
     canvas = document.getElementById("canvas"); //gets the predefined canvas element
     context = canvas.getContext("2d"); //gets the canvas' context to draw on
 
-    updateHeight();
+    updateCanvasSize();
 
     barrier.y = canvasHeight - barrier.height; //set initial barrier position
 
@@ -80,5 +80,5 @@ function loop() {
 }
 
 window.onload = init;
-window.addEventListener('resize', updateHeight, true);
+window.addEventListener('resize', updateCanvasSize, true);
 

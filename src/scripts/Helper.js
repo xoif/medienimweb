@@ -79,11 +79,13 @@ function stop(){
 }
 
 function drawTutorialScreen() {
+    if (tutorialState <= 6) {
     context.fillStyle = "rgba(255, 100, 100, 0.8)";
     context.fillRect(0, 0, canvasWidth, canvasHeight);
     context.fillStyle = "rgb(0,0,0)";
     context.font = "100px Georgia";
     context.textAlign = "center";
+    }
 
     switch (tutorialState) {
         case 1: {
@@ -163,7 +165,7 @@ function next() {
 /*
  fit height dynamicly to screen width
  */
-function updateHeight() {
+function updateCanvasSize() {
     document.getElementById("buttonNext").style.bottom = "20px";
 
     canvas.width = window.innerWidth - 20;
