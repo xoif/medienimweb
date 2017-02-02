@@ -35,7 +35,7 @@ canvas {
 
 #buttonNext {
     position: absolute;
-    top: 65%;
+    bottom: 20%;
     left: 40%;
     z-index: 9999999;
     font-family: Georgia, 'Times New Roman', Times, serif;

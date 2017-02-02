@@ -79,6 +79,5 @@ function loop() {
 }
 
 window.onload = init;
-window.ready(updateHeight);
 window.resize(updateHeight);
 

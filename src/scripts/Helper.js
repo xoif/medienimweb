@@ -81,7 +81,7 @@ function drawTutorialScreen() {
     context.fillStyle = "rgba(255, 100, 100, 0.8)";
     context.fillRect(0, 0, canvasWidth, canvasHeight);
     context.fillStyle = "rgb(0,0,0)";
-    context.font = "100px Georgia";
+    context.font = "80px Georgia";
     context.textAlign = "center";
 
     switch (tutorialState) {
@@ -112,6 +112,7 @@ function drawTutorialScreen() {
 function next() {
     draw();
     tutorialState++;
+    var button = document.getElementById("buttonNext");
     switch (tutorialState) {
         case 2: {
             drawTutorialScreen();
@@ -135,11 +136,21 @@ function next() {
         case 6: {
             drawTutorialScreen();
             canvas.removeEventListener("mousedown", handleMouseClickDownForBarrier, false);
+            button.firstChild.data = "start plane";
             break;
         }
         case 7: {
-            movePaperPlane();
-            document.getElementById("buttonNext").attr('disabled', true);
+            go();
+            button.firstChild.data = "cancel";
+            break;
+        }
+        case 8: {
+            stop();
+            button.firstChild.data = "try again";
+            break;
+        }
+        case 9: {
+            location.reload();
             break;
         }
     }
