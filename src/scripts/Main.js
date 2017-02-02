@@ -1,4 +1,4 @@
-var canvas, context, canvasWidth, canvasHeight, myTimer, animationCycle, framesPerSeconds;
+var canvas, context, canvasWidth, canvasHeight, myTimer, animationCycle, framesPerSeconds, isDestroyed;
 
 function init() {
 
@@ -9,7 +9,6 @@ function init() {
     context = canvas.getContext("2d"); //gets the canvas' context to draw on
 
     updateCanvasSize();
-
     draw();
     drawTutorialScreen();
 }
@@ -34,9 +33,7 @@ function draw() {
 
     context.clearRect(0, 0, canvasWidth, canvasHeight); //1) clear the canvas before animating
 
-    // 3) draw objects that should be animated. 
-
-    sun.draw();
+    // 3) draw objects that should be animated.
     cloud1.draw();
     cloud2.draw();
 
@@ -48,12 +45,15 @@ function draw() {
     if (tutorialState >= 5) {
         balloon.draw();
     }
-    if (tutorialState >= 7) {
+    if (tutorialState >= 7 && !isDestroyed) {
         paperPlane.draw();
     }
 
     if (shouldShowHitboxes) {
         drawHitboxes();
+    }
+    if (isDestroyed) {
+        pow.draw();
     }
 }
 
@@ -67,17 +67,19 @@ function loop() {
     moveClouds();
     moveSun();
 
+    if (isDestroyed) {
+        animatePow();
+    }
+
     // stop the the animation if it runs out-of-canvas
     if (paperPlane.x > canvasWidth) {
         stop();
         alert("You win!");
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         window.location.reload(true);
-    } else if (checkCollision()) {
-        stop();
-        alert("You loose!");
-        context.clearRect(0, 0, canvasWidth, canvasHeight);
-        window.location.reload(true);
+    } else if (!isDestroyed && checkCollision()) {
+        pow.setup();
+        isDestroyed = true;
     }
 
     animationCycle++;
