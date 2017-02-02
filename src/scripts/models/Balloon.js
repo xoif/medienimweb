@@ -5,7 +5,7 @@
 var balloon = {
     img: new Image(), //create new image element
     x: 300,
-    y: 300,
+    y: 50,
     draw: function () {
         //draw balloon
         this.img.src = 'images/Ballon_rot.svg';

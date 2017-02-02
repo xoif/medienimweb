@@ -46,7 +46,12 @@ function draw() {
     cloud1.draw();
     cloud2.draw();
     paperPlane.draw();
-    barrier.draw();
+    if (tutorialState >= 3) {
+        barrier.draw();
+    }
+    if (tutorialState >= 5) {
+        balloon.draw();
+    }
 
     if (shouldShowHitboxes) {
         drawHitboxes();
@@ -79,5 +84,5 @@ function loop() {
 }
 
 window.onload = init;
-window.resize(updateHeight);
+window.addEventListener('resize', updateHeight, true);
 

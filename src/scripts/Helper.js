@@ -97,7 +97,7 @@ function drawTutorialScreen() {
         }
         case 4: {
             context.fillText("Great! Now moove the", canvasWidth / 2, canvasHeight / 2);
-            context.fillText("blue balloon!", canvasWidth / 2, canvasHeight / 2 + 110);
+            context.fillText("red balloon!", canvasWidth / 2, canvasHeight / 2 + 110);
             break;
         }
         case 6: {
@@ -110,8 +110,8 @@ function drawTutorialScreen() {
 }
 
 function next() {
-    draw();
     tutorialState++;
+    draw();
     var button = document.getElementById("buttonNext");
     switch (tutorialState) {
         case 2: {
@@ -160,7 +160,6 @@ function next() {
  fit height dynamicly to screen width
  */
 function updateHeight() {
-    var div = document.getElementsByClassName("container");
-    var width = div.width();
-    div.css('height', 0.5626 * width);
+    var div = document.getElementById("container").style.height = 0.5626 * canvasWidth;
+    var nextButton = document.getElementById("buttonNext").style.bottom = "20px";
 }
