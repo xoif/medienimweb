@@ -79,11 +79,12 @@ function stop(){
 }
 
 function drawTutorialScreen() {
-    if (tutorialState <= 6) {
+
+    if (tutorialState <= 2 || tutorialState ==  4 || tutorialState == 6) {
     context.fillStyle = "rgba(255, 100, 100, 0.8)";
     context.fillRect(0, 0, canvasWidth, canvasHeight);
     context.fillStyle = "rgb(0,0,0)";
-    context.font = "100px Georgia";
+    context.font = "80px Georgia";
     context.textAlign = "center";
     }
 
@@ -101,8 +102,6 @@ function drawTutorialScreen() {
         case 4: {
             context.fillText("Great! Now move the", canvasWidth / 2, canvasHeight / 2);
             context.fillText("red balloon!", canvasWidth / 2, canvasHeight / 2 + 110);
-            balloon.x = canvasWidth/2;
-            balloon.y = canvasHeight - balloon.img.height;
             balloon.draw();
             break;
         }
@@ -122,6 +121,7 @@ function next() {
     switch (tutorialState) {
         case 2: {
             drawTutorialScreen();
+            barrier.setup();
             break;
         }
         case 3: {
@@ -132,6 +132,7 @@ function next() {
         case 4: {
             drawTutorialScreen();
             canvas.removeEventListener("mousedown", handleMouseClickDownForBarrier, false);
+            balloon.setup();
             break;
         }
         case 5: {
@@ -141,8 +142,9 @@ function next() {
         }
         case 6: {
             drawTutorialScreen();
-            canvas.removeEventListener("mousedown", handleMouseClickDownForBarrier, false);
+            canvas.removeEventListener("mousedown", handleMouseClickDownForBalloon, false);
             button.firstChild.data = "start plane";
+            paperPlane.setup();
             break;
         }
         case 7: {
@@ -166,10 +168,11 @@ function next() {
  fit height dynamicly to screen width
  */
 function updateCanvasSize() {
+    console.log("update canvas size");
     document.getElementById("buttonNext").style.bottom = "20px";
 
-    canvas.width = window.innerWidth - 20;
-    canvas.height = (window.innerWidth - 20) * 0.5626;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerWidth * 0.5;
 
     canvasWidth = canvas.width;
     canvasHeight = canvas.height;
